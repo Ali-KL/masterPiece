@@ -7,12 +7,15 @@
                 <div class="card">
                     <div class="card-header">{{ __('Login') }}</div>
 
-                    @if ($errors->any())
-                        {{ implode('', $errors->all('<div>:error</div>')) }}
-                    @endif
+
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">
+                            @if ($message = Session::get('error'))
+                            <div class="alert alert-danger">
+                                <p>{{ $message }}</p>
+                            </div>
+                        @endif
                             @csrf
 
                             <div class="row mb-3">

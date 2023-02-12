@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -32,10 +35,20 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function receptHome()
+    {
+        return view('home');
+    }
+    /**
+     * Show the recept dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function receptDash()
     {
-        return view('recept.receptDash');
-    }
+        $users = User::latest()->paginate(5);
+        return view('recept.receptDash', ['users' => $users])
+            ->with('i', (request()->input('page', 1) - 1) * 5);    }
 
     /**
      * Show the doctor dashboard.

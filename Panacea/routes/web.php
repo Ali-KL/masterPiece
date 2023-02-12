@@ -63,12 +63,14 @@ recept Routes List
 --------------------------------------------
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:recept'])->group(function () {
-    Route::get('dashboard', [HomeController::class, 'receptDash'])->name('dashboard');
+
+    Route::get('recept/home', [HomeController::class, 'receptHome'])->name('recept.home');
+    Route::get('/dashboard', [HomeController::class, 'receptDash'])->name('dashboard');
+
+    Route::resource('users', UserController::class);
 
 
-    // Route::get('/recept/home', [HomeController::class, 'receptHome'])->name('recept.home');
-    // Route::get('/recept/addPatient', [UserController::class, 'index'])->name('recept.addPatient');
-    // Route::post('/recept/addPatient', [UserController::class, 'store'])->name('recept.addPatient');
+
 });
 
 /*------------------------------------------
