@@ -11,6 +11,9 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">{{ __('Add User') }}</div>
+                    <div class="pull-right">
+                        <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
+                    </div>
 
                     <div class="card-body">
                         @if (\Session::has('message'))

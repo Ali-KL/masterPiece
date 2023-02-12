@@ -11,6 +11,10 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">{{ __('Edit User') }}</div>
+                    
+                    <div class="pull-right">
+                        <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
+                    </div>
 
                     <div class="card-body">
                         @if (\Session::has('message'))
@@ -20,7 +24,7 @@
                                 </ul>
                             </div>
                         @endif
-                        <form method="POST" action="{{ route('users.update',$user->id) }}">
+                        <form method="POST" action="{{ route('users.update', $user->id) }}">
                             @csrf
                             @method('PUT')
                             <div class="row mb-3">
@@ -54,7 +58,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            
+
 
                             <div class="row mb-3">
                                 <label for="age"
@@ -80,7 +84,8 @@
                                         class="form-control @error('role') is-invalid @enderror" name="role"
                                         value="" autofocus>
                                         <option aria-placeholder="
-                                        select Role" selected></option>
+                                        select Role"
+                                            selected></option>
                                         <option value="0">patient</option>
                                         <option value="1">recept</option>//checkbox
                                         <option value="2">doctor</option>
